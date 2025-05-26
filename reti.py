@@ -140,14 +140,14 @@ def should_jump(conditional):
     if conditional == '>=':
         return acc >= 0
 
-    return False
+    raise NotImplementedError(f'conditional jump JUMPC {conditional} using invalid condition {conditional}')
 
 
 def read_instructions():
-    path = sys.argv[1] if len(sys.argv) > 1 else 'multiply.txt'
+    path = sys.argv[1] if len(sys.argv) > 1 else 'examples/multiply.txt'
     file = open(path, 'r')
     lines = file.readlines()
-    return [line.strip().split(" ") for line in lines
+    return [line.split("#")[0].strip().split(" ") for line in lines
             if not line.startswith('#') and line.strip() != ""]
 
 
